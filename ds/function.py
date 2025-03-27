@@ -42,7 +42,11 @@ tools = [
                     "location": {
                         "type": "string",
                         "description": "城市或县区，比如北京市、杭州市、余杭区等。"
-                    }
+                    },
+                    "adcode": {
+                       "type": "string",
+                        "description": "城市或县区对应的城市编码，比如北京：110000"
+                    } 
                 }
             },
             "required": [
@@ -59,6 +63,7 @@ def get_current_weather(arguments):
     # 随机选择一个天气条件
     random_weather = random.choice(weather_conditions)
     # 从 JSON 中提取位置信息
+    print("arguments:", arguments)
     location = arguments["location"]
     # 返回格式化的天气信息
     return f"{location}今天是{random_weather}。"
