@@ -9,7 +9,9 @@ load_dotenv();
 key_prefix= os.getenv('KEY_PREFIX')
 base_url = os.getenv(f"{key_prefix}_BASE_URL")
 # key_prefix ='DASHSCOPE'
+module = os.getenv(f"{key_prefix}_MODEL")
 
+print(f"base_url= {base_url}, model={module}")
 
 client = OpenAI(
     # 若没有配置环境变量，请用百炼API Key将下行替换为：api_key="sk-xxx",
@@ -26,7 +28,7 @@ tools = [
             "name": "get_current_time",
             "description": "当你想知道现在的时间时非常有用。",
             # 因为获取当前时间无需输入参数，因此parameters为空字典
-            "parameters": {}
+            "parameters": { "type": "object",}
         }
     },  
     # 工具2 获取指定城市的天气
@@ -48,10 +50,7 @@ tools = [
                         "description": "城市或县区对应的城市编码，比如北京：110000"
                     } 
                 }
-            },
-            "required": [
-                "location"
-            ]
+            }
         }
     }
 ]
@@ -93,7 +92,7 @@ def call_with_messages():
     print('\n')
     messages = [
             {
-                "content": input('请输入：'),  # 提问示例："现在几点了？" "一个小时后几点" "北京天气如何？"
+                "content":  '苏州天气如何？',  # 提问示例："现在几点了？" "一个小时后几点" "北京天气如何？"
                 "role": "user"
             }
     ]

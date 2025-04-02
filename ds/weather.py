@@ -115,10 +115,10 @@ if __name__ == "__main__":
     agent = WeatherAgent()
     
     test_cases = [
-        "北京天气怎么样？",
+        "苏州天气怎么样？",
         "上海市浦东今天会下雨吗",
         # "帮我查一个不存在的城市的天气",  # 测试错误处理
-        "讲个笑话"
+        # "讲个笑话"
     ]
     
     for query in test_cases:
