@@ -76,6 +76,8 @@ def get_current_time():
     # 返回格式化后的当前时间
     return f"当前时间：{formatted_time}。"
 
+
+
 # 封装模型响应函数
 def get_response(messages):
     print("-"*60, ">")
@@ -84,15 +86,18 @@ def get_response(messages):
     completion = client.chat.completions.create(
         model=os.getenv(f"{key_prefix}_MODEL"),  # 模型列表：https://help.aliyun.com/zh/model-studio/getting-started/models
         messages=messages,
-        tools=tools
+        # tool_choice={"type":"function","function": {"name": "get_current_weather"}},
+        tools=tools,
+
         )
+    print(completion.model_dump_json())
     return completion
 
 def call_with_messages():
     print('\n')
     messages = [
             {
-                "content":  '苏州天气如何？',  # 提问示例："现在几点了？" "一个小时后几点" "北京天气如何？"
+                "content":  '苏州天气如何？',  # 提问示例："现在几点了？" "一个小时后几点" "北京天气如何？" 苏州天气如何？
                 "role": "user"
             }
     ]
