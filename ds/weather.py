@@ -50,7 +50,7 @@ class WeatherAgent:
                 
             live_data = lives[0]
             return (
-                f"当前天气：{live_data['weather']}\n"
+                f"当前天气：{live_data['weather']}//n"
                 f"温度：{live_data['temperature']}°C\n"
                 f"湿度：{live_data['humidity']}%\n"
                 f"更新时间：{live_data['reporttime']}"

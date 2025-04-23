@@ -4,12 +4,18 @@ import json
 import os
 import random
 from dotenv import load_dotenv
+import httpx
 
 load_dotenv();
 key_prefix= os.getenv('KEY_PREFIX')
 base_url = os.getenv(f"{key_prefix}_BASE_URL")
 # key_prefix ='DASHSCOPE'
 module = os.getenv(f"{key_prefix}_MODEL")
+
+print("***********************************", os.getenv("HTTPX_VERIFY"))
+
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
 
 print(f"base_url= {base_url}, model={module}")
 
